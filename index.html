@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Tr Kyaw's Teaching Hub — Management Portal</title>
     <!-- Tailwind CSS v4 -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -64,6 +67,35 @@
             z-index: 10;
             box-shadow: 0 8px 20px -5px rgba(0,0,0,0.5);
         }
+
+        /* 1. Tablet & Large Screens (Sidebar နဲ့ Table ဘေးချင်းကပ်) */
+    @media (min-width: 1025px) {
+        #mainWorkspaceGrid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    }
+
+    /* 2. Mobile/Tablet (Sidebar ကို အောက်သို့ရွှေ့ခြင်း) */
+    @media (max-width: 1024px) {
+        #mainWorkspaceGrid { display: flex; flex-direction: column-reverse; }
+        aside { width: 100%; margin-bottom: 20px; }
+    }
+
+    /* 3. Small Mobile (< 480px) */
+    @media (max-width: 480px) {
+        body { padding-top: 60px; }
+        header .max-w-7xl { height: 60px !important; }
+        
+        #timetableCardContainer { overflow-x: auto; padding: 10px !important; }
+        #relationalMatrixTable { min-width: 500px; font-size: 10px !important; }
+        
+        /* Modal များ ဖုန်းမျက်နှာပြင်တွင် ပြည့်ဝစွာပေါ်စေရန် */
+        .modal-frame > div { margin: 10px !important; width: 95% !important; max-height: 85vh; overflow-y: auto; }
+    }
+
+    /* 4. Landscape Mode (ဘေးစောင်းကြည့်ရင် Header ဖျောက်) */
+    @media (orientation: landscape) and (max-height: 500px) {
+        #topSystemLayout { display: none; }
+        body { padding-top: 10px !important; }
+    }
 
         /* High-Priority Pulse Status Configuration */
         .live-active-cell {
