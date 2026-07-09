@@ -414,25 +414,60 @@
     <script>
         const initialMapSchema = {
             "D.T": { name: "ဒေါ်သီတာ", map: "#" },
-            "C.G": { name: "ကားကြီးတန်းဘုရား", map: "#" },
-            "S.T.P": { name: "ဒီကန္နူ", map: "#" },
-            "P.H.L": { name: "ပန်းလှိုင်", map: "#" },
-            "J.N.M": { name: "ဂျာနယ်ကျော်", map: "#" },
-            "R.P": { name: "ရာပြည့် (ByOne)", map: "#" }
+            "C.G": { name: "ကားကြီးဝန်းနား", map: "#" },
+            "S.T.P": { name: "စီတာပူ", map: "#" },
+            "S.T.P": { name: "စီတာပူ(နှစ်ကျ)", map: "#" },
+            "P.H.L": { name: "ပန်ထွယ်လုံ", map: "#" },
+            "J.N.M": { name: "တက္ကသိုလ်ဝိုင်း", map: "#" },
+            "R.P": { name: "ရမ်ပူ", map: "#" }
         };
 
         const initialTimeSlots = ["8-9", "9-10", "10-11", "11-12", "12-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-∞"];
 
         // High-Capacity Structured Multidimensional Database Schema Seed
         const initialTimetableSeed = {
-            1: {"5-6":{"loc":"S.T.P","teacher":"Tr Kyaw","course":"Physics"}, "6-7":{"loc":"R.P","teacher":"Tr Kyaw","course":"Math"}, "8-∞":{"loc":"J.N.M","teacher":"Tr Kyaw","course":"Chemistry"}},
-            2: {"5-6":{"loc":"S.T.P","teacher":"Tr Kyaw","course":"Physics"}, "6-7":{"loc":"R.P","teacher":"Tr Kyaw","course":"Bio"}},
-            3: {"5-6":{"loc":"D.T","teacher":"Tr Kyaw","course":"Math"}, "6-7":{"loc":"R.P","teacher":"Tr Kyaw","course":"Physics"}},
-            4: {"4-5":{"loc":"C.G","teacher":"Tr Kyaw","course":"Bio"}, "5-6":{"loc":"D.T","teacher":"Tr Kyaw","course":"Physics"}, "6-7":{"loc":"R.P","teacher":"Tr Kyaw","course":"Math"}, "8-∞":{"loc":"S.T.P","teacher":"Tr Kyaw","course":"Chemistry"}},
-            5: {"4-5":{"loc":"C.G","teacher":"Tr Kyaw","course":"Bio"}, "5-6":{"loc":"D.T","teacher":"Tr Kyaw","course":"Physics"}, "6-7":{"loc":"R.P","teacher":"Tr Kyaw","course":"Math"}, "8-∞":{"loc":"S.T.P","teacher":"Tr Kyaw","course":"Chemistry"}},
-            6: {"4-5":{"loc":"C.G","teacher":"Tr Kyaw","course":"Math"}, "5-6":{"loc":"P.H.L","teacher":"Tr Kyaw","course":"Physics"}, "6-7":{"loc":"R.P","teacher":"Tr Kyaw","course":"Chemistry"}, "7-8":{"loc":"D.T","teacher":"Tr Kyaw","course":"Bio"}},
-            0: {"9-10":{"loc":"R.P","teacher":"Tr Kyaw","course":"Physics"}, "4-5":{"loc":"P.H.L","teacher":"Tr Kyaw","course":"Math"}, "5-6":{"loc":"S.T.P","teacher":"Tr Kyaw","course":"Bio"}, "7-8":{"loc":"J.N.M","teacher":"Tr Kyaw","course":"Chemistry"}}
-        };
+    1: { // တနင်္လာ
+        "5-6": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Physics"},
+        "6-7": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Physics"},
+        "7-8": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Physics"},
+        "8-∞": {"loc":"J.N.M", "teacher":"Tr Kyaw", "course":"Chemistry"}
+    },
+    2: { // အင်္ဂါ
+        "5-6": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Physics"},
+        "6-7": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Physics"},
+        "7-8": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Bio"}
+    },
+    3: { // ဗုဒ္ဓဟူး
+        "5-6": {"loc":"D.T", "teacher":"Tr Kyaw", "course":"Math"},
+        "6-7": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Physics"},
+        "7-8": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Physics"}
+    },
+    4: { // ကြာသပတေး
+        "4-5": {"loc":"C.G", "teacher":"Tr Kyaw", "course":"Bio"},
+        "5-6": {"loc":"D.T", "teacher":"Tr Kyaw", "course":"Physics"},
+        "6-7": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Math"},
+        "8-∞": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Chemistry"}
+    },
+    5: { // သောကြာ
+        "4-5": {"loc":"C.G", "teacher":"Tr Kyaw", "course":"Bio"},
+        "5-6": {"loc":"D.T", "teacher":"Tr Kyaw", "course":"Physics"},
+        "6-7": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Math"},
+        "8-∞": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Chemistry"}
+    },
+    6: { // စနေ
+        "4-5": {"loc":"C.G", "teacher":"Tr Kyaw", "course":"Math"},
+        "5-6": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Physics"},
+        "6-7": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Chemistry"},
+        "8-∞": {"loc":"D.T", "teacher":"Tr Kyaw", "course":"Bio"}
+    },
+    0: { // တနင်္ဂနွေ
+        "10-11": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Physics"},
+        "4-5": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Math"},
+        "5-6": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Bio"},
+        "6-7": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Bio"},
+        "8-∞": {"loc":"J.N.M", "teacher":"Tr Kyaw", "course":"Chemistry"}
+    }
+};
         // --- ဒီနေရာမှာ သင်မေးထားတဲ့ ကုဒ်အသစ်တွေကို ထည့်ရပါမယ် ---
         
         // Language Toggle Function
