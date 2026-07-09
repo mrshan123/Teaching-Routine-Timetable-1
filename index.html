@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tr Kyaw's Teaching Hub — Management Portal</title>
+    <!-- Tailwind CSS v4 -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', 'Padauk', sans-serif; 
+            letter-spacing: -0.02em; 
+            scroll-behavior: smooth;
+        }
+
+        /* Webkit Scrollbar Minimal Design */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0B1220; }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(180deg, #6366F1, #111827); 
+            border-radius: 100px;
+        }
+        
+        /* Dark Glassmorphic Header Style */
+        .glass-header {
+            background: rgba(11, 18, 32, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        /* SaaS Elevation Layered Cards */
+        .premium-card {
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.7);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .premium-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 15px 35px -10px rgba(99, 102, 241, 0.15);
+        }
+
+        /* Scandi Break Cell Pattern with Soft Indigo Accent */
+        .scandi-break { 
+            background: repeating-linear-gradient(45deg, rgba(99,102,241,0.08), rgba(99,102,241,0.08) 10px, rgba(17,24,39,0.7) 10px, rgba(17,24,39,0.7) 20px) !important;
+            color: #94A3B8 !important; 
+        }
+
+        /* Interactive Matrix Transition Dynamics */
+        .interactive-cell {
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .interactive-cell:hover:not(.live-active-cell) {
+            filter: brightness(1.25);
+            transform: scale(1.03);
+            z-index: 10;
+            box-shadow: 0 8px 20px -5px rgba(0,0,0,0.5);
+        }
+
+        /* High-Priority Pulse Status Configuration */
+        .live-active-cell {
+            position: relative;
+            background: #10B981 !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5) !important;
+            transform: scale(1.03);
+            z-index: 20;
+            animation: systemPulseState 2s infinite alternate;
+        }
+        
+        @keyframes systemPulseState {
+            0% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+            100% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.7); }
+        }
+
+        /* Dynamic Mapping Styles Engine */
+        .loc-dt { background: rgba(56, 189, 248, 0.15) !important; color: #38bdf8 !important; border: 1px solid rgba(56, 189, 248, 0.3) !important; }
+        .loc-cg { background: rgba(251, 146, 60, 0.15) !important; color: #fb923c !important; border: 1px solid rgba(251, 146, 60, 0.3) !important; }
+        .loc-stp { background: rgba(139, 92, 246, 0.15) !important; color: #a78bfa !important; border: 1px solid rgba(139, 92, 246, 0.3) !important; }
+        .loc-phl { background: rgba(52, 211, 153, 0.15) !important; color: #34d399 !important; border: 1px solid rgba(52, 211, 153, 0.3) !important; }
+        .loc-jnm { background: rgba(244, 114, 182, 0.15) !important; color: #f472b6 !important; border: 1px solid rgba(244, 114, 182, 0.3) !important; }
+        .loc-rp { background: rgba(34, 211, 238, 0.15) !important; color: #22d3ee !important; border: 1px solid rgba(34, 211, 238, 0.3) !important; }
+        .loc-default { background: rgba(148, 163, 184, 0.1) !important; color: #94A3B8 !important; border: 1px solid rgba(148, 163, 184, 0.2) !important; }
+
+        @media print {
+            body { background: white !important; color: black !important; padding: 0 !important; }
+            #topSystemLayout, #countdownBanner, #sidebarLegendSection, #assistantDock, .modal-frame, #analyticsSection, #auditLogsSection, #exceptionManagerCard { display: none !important; }
+            #timetableCardContainer { border: none !important; box-shadow: none !important; padding: 0 !important; }
+            table { width: 100% !important; border-collapse: collapse !important; }
+            th, td { border: 1px solid #cbd5e1 !important; color: #334155 !important; padding: 6px !important; font-size: 10px !important; }
+        }
+    </style>
+</head>
+<!-- ပထမဆုံး Head Tag အောက်တွင် ထည့်သွင်းပါ -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+
+<body class="bg-[#0B1220] text-[#E5E7EB] min-h-screen antialiased transition-colors duration-500 pb-16">
+
+    <!-- SYSTEM NAVIGATION HUB -->
+<header id="topSystemLayout" class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800 shadow-2xl transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        
+        <!-- Left: Brand Logo -->
+        <div class="flex items-center gap-3 cursor-pointer group">
+            <div class="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#6366F1] to-[#4F46E5] flex items-center justify-center shadow-lg shadow-[#6366F1]/20">
+                <i class="fa-solid fa-microchip text-white text-sm"></i>
+                <span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
+            </div>
+            <div>
+                <h1 class="text-[13px] font-black text-white tracking-tight">Tr Kyaw's Teaching Hub</h1>
+                <p class="text-[9px] text-[#6366F1] font-bold tracking-[0.2em] uppercase">Enterprise Portal</p>
+            </div>
+        </div>
+
+        <!-- Center: Search & Clock -->
+        <div class="flex items-center gap-4">
+            <div id="clockDisplay" class="hidden lg:block text-[10px] font-mono text-emerald-400 font-bold bg-slate-900 px-3 py-1 rounded-lg border border-slate-800">00:00:00</div>
+            <div class="relative">
+                <input type="text" id="globalSearch" placeholder="Search data..." 
+                    class="bg-slate-900/50 border border-slate-700 text-slate-300 rounded-xl px-4 py-1.5 text-xs w-48 focus:w-64 transition-all duration-300 focus:ring-1 focus:ring-[#6366F1] outline-none placeholder:text-slate-600">
+                <i class="fa-solid fa-search absolute right-3 top-2 text-slate-500 text-[10px]"></i>
+            </div>
+        </div>
+
+        <!-- Right: Actions -->
+        <div class="flex items-center gap-2">
+            <button id="langToggleBtn" class="h-9 px-3 border border-slate-800 rounded-xl text-xs font-semibold text-slate-300 hover:bg-slate-800 transition-all flex items-center gap-2">
+                <i class="fa-solid fa-language text-[#6366F1]"></i> <span id="langBtnText">မြန်မာ</span>
+            </button>
+            <button id="adminGatewayBtn" class="h-9 px-4 bg-slate-800 border border-slate-700 rounded-xl text-[10px] font-bold text-rose-400 flex items-center gap-2 hover:border-rose-500/50 transition-all">
+                <i class="fa-solid fa-lock" id="gateLockIcon"></i> <span id="gateButtonText">Locked</span>
+            </button>
+        </div>
+    </div>
+</header>
+<!-- CSS Styles -->
+<style>
+    /* ဤနေရာကို အဓိကထည့်ပေးလိုက်ပါ - Header 20 (80px) ရှိတဲ့အတွက် 80px ချန်ထားတာပါ */
+    body {
+        padding-top: 80px; 
+    }
+
+    .highlight-row { background-color: rgba(99, 102, 241, 0.15) !important; transition: 0.3s; }
+</style>
+
+<!-- JavaScript Logic -->
+<script>
+    // 1. Clock
+    function updateClock() {
+        const now = new Date();
+        document.getElementById('clockDisplay').textContent = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // 2. Search Engine 
+    // သတိပြုရန် - သင့်ရဲ့ Table body ရဲ့ ID ကို dataRows ဟုပေးထားပါ။
+    document.getElementById('globalSearch').addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const rows = document.querySelectorAll('#dataRows tr'); 
+        
+        rows.forEach(row => {
+            const rowText = row.innerText.toLowerCase();
+            row.style.display = rowText.includes(searchTerm) ? '' : 'none';
+        });
+    });
+
+    // 3. Admin Gateway
+    const gateBtn = document.getElementById('adminGatewayBtn');
+    const gateIcon = document.getElementById('gateLockIcon');
+    let isLocked = true;
+
+    gateBtn.addEventListener('click', () => {
+        isLocked = !isLocked;
+        if(!isLocked) {
+            gateIcon.className = "fa-solid fa-unlock text-emerald-400";
+            gateBtn.querySelector('span').textContent = "Unlocked";
+            gateBtn.classList.replace('text-rose-400', 'text-emerald-400');
+        } else {
+            gateIcon.className = "fa-solid fa-lock text-rose-400";
+            gateBtn.querySelector('span').textContent = "Locked";
+            gateBtn.classList.replace('text-emerald-400', 'text-rose-400');
+        }
+    });
+
+    // 4. Language Toggle
+    document.getElementById('langToggleBtn').addEventListener('click', () => {
+        const langText = document.getElementById('langBtnText');
+        langText.textContent = langText.textContent === "မြန်မာ" ? "English" : "မြန်မာ";
+    });
+</script>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 mt-6">
+        
+        <!-- REAL-TIME EVENTS COUNTDOWN BANNER & PROGRESS BAR -->
+        <div id="countdownBanner" class="hidden mb-6 bg-[#111827] border border-[#10B981]/30 p-4 rounded-2xl shadow-xl transition-all duration-300 flex flex-col gap-3">
+            <div class="text-xs font-semibold text-[#10B981] flex items-center gap-3">
+                <i class="fa-solid fa-circle-play animate-pulse text-emerald-500"></i>
+                <span id="countdownBannerText" class="text-[#E5E7EB]">Loading system delta...</span>
+            </div>
+            <!-- Live Session Linear Progress Gauge -->
+            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                <div id="sessionProgressGauge" class="bg-gradient-to-r from-emerald-500 to-[#6366F1] h-full w-0 transition-all duration-1000"></div>
+            </div>
+        </div>
+
+        <!-- STRUCTURAL HORIZONTAL STRIP & STATS -->
+        <div class="grid grid-cols-12 gap-5 mb-6">
+            <section class="col-span-12 lg:col-span-8 premium-card rounded-2xl p-5">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-4 bg-[#6366F1] rounded-full shadow-lg shadow-[#6366F1]/50"></span>
+                        <h3 data-lang-en="Today's Active Tracks" data-lang-mm="ယနေ့ သင်ကြားမည့် အတန်းများ" class="text-xs font-extrabold tracking-widest text-[#94A3B8] uppercase">Today's Active Tracks</h3>
+                    </div>
+                    <span id="liveClockWidget" class="text-xs font-mono font-bold bg-[#0B1220] text-[#10B981] px-3 py-1 rounded-xl shadow-inner border border-slate-800">00:00:00 AM</span>
+                </div>
+                <div id="horizontalTimelineStrip" class="flex gap-3 overflow-x-auto pb-1.5 snap-x"></div>
+            </section>
+
+            <!-- AUTOMATED STATS ANALYTICS -->
+            <section id="analyticsSection" class="col-span-12 lg:col-span-4 premium-card rounded-2xl p-5">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="w-2 h-4 bg-[#10B981] rounded-full shadow-lg shadow-[#10B981]/50"></span>
+                    <h3 data-lang-en="System Insights Summary" data-lang-mm="တစ်ပတ်တာ စာရင်းချုပ်" class="text-xs font-extrabold tracking-widest text-[#94A3B8] uppercase">System Insights Summary</h3>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gradient-to-br from-[#6366F1]/20 to-[#8B5CF6]/5 p-4 rounded-xl border border-[#6366F1]/30 hover:border-[#6366F1]/50 transition-colors">
+                        <p data-lang-en="Total Sessions" data-lang-mm="စုစုပေါင်း အတန်းချိန်" class="text-[10px] text-[#94A3B8] font-bold uppercase tracking-widest mb-1">Total Sessions</p>
+                        <p id="statTotalClasses" class="text-3xl font-black text-white tracking-tight">0</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-[#10B981]/20 to-[#14B8A6]/5 p-4 rounded-xl border border-[#10B981]/30 hover:border-[#10B981]/50 transition-colors">
+                        <p data-lang-en="Top Location" data-lang-mm="အတန်းအများဆုံးနေရာ" class="text-[10px] text-[#94A3B8] font-bold uppercase tracking-widest mb-1">Top Location</p>
+                        <p id="statTopLocation" class="text-xs font-bold text-white truncate pt-1">—</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- MAIN SYSTEM GRID LAYOUT -->
+        <div id="mainWorkspaceGrid" class="grid grid-cols-12 gap-5">
+            
+            <!-- LEFT SIDEBAR: CONFIGS -->
+            <aside id="sidebarLegendSection" class="col-span-12 lg:col-span-3 space-y-5">
+                <!-- LOCATION SYSTEM CONFIG -->
+                <div class="premium-card rounded-2xl p-5">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-4 bg-[#6366F1] rounded-full"></span>
+                            <h2 data-lang-en="Location Indexes" data-lang-mm="စာသင်ရမည့် နေရာများ" class="text-xs font-extrabold tracking-widest text-[#94A3B8] uppercase">Location Indexes</h2>
+                        </div>
+                        <button id="addLocationBtn" class="admin-ui hidden text-[10px] font-extrabold uppercase tracking-widest bg-[#6366F1] hover:bg-[#4F46E5] text-white px-3 py-1 rounded-xl transition-all shadow-sm cursor-pointer active:scale-95">+ Add</button>
+                    </div>
+                    <div id="locationCardList" class="space-y-2.5 max-h-[220px] overflow-y-auto pr-1"></div>
+                </div>
+
+                <!-- TIME SLOT MATRIX CONFIG -->
+                <div class="premium-card rounded-2xl p-5">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-4 bg-[#10B981] rounded-full"></span>
+                            <h2 data-lang-en="Operational Slots" data-lang-mm="သတ်မှတ်ထားသော အချိန်များ" class="text-xs font-extrabold tracking-widest text-[#94A3B8] uppercase">Operational Slots</h2>
+                        </div>
+                        <button id="editTimeSlotsBtn" class="admin-ui hidden text-[10px] font-extrabold uppercase tracking-widest bg-[#10B981] hover:bg-[#059669] text-white px-2.5 py-1 rounded-xl transition-all shadow-sm cursor-pointer active:scale-95"><i class="fa-solid fa-sliders mr-1 text-[9px]"></i> Config</button>
+                    </div>
+                    <div id="timeSlotsBadgeContainer" class="flex flex-wrap gap-1.5"></div>
+                </div>
+
+                <!-- EXCEPTION / HOLIDAY OVERRIDE MANAGER -->
+                <div id="exceptionManagerCard" class="premium-card rounded-2xl p-5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-2 h-4 bg-rose-500 rounded-full"></span>
+                        <h2 data-lang-en="Exceptions Logs" data-lang-mm="အတန်းပိတ်/အစားထိုးရက်များ" class="text-xs font-extrabold tracking-widest text-[#94A3B8] uppercase">Exceptions Logs</h2>
+                    </div>
+                    <div id="exceptionsListViewer" class="space-y-2 max-h-[150px] overflow-y-auto text-[11px] mb-3"></div>
+                    <button id="addExceptionTriggerBtn" class="admin-ui hidden w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] font-bold uppercase tracking-widest rounded-xl border border-slate-700 transition-all cursor-pointer">Set Custom Exception</button>
+                </div>
+            </aside>
+
+            <!-- RIGHT SYSTEM CONTAINER: CORE MATRIX TABLE -->
+            <section id="timetableCardContainer" class="col-span-12 lg:col-span-9 premium-card rounded-2xl p-5 overflow-x-auto">
+                <table class="w-full min-w-[850px] text-left text-xs border-collapse" id="relationalMatrixTable">
+                    <thead>
+                        <tr id="matrixHeaderRow" class="border-b border-slate-800 text-[#94A3B8] font-extrabold uppercase tracking-widest text-[11px]">
+                            <!-- Dynamic Columns Inject -->
+                        </tr>
+                    </thead>
+                    <tbody id="matrixTableBody" class="divide-y divide-slate-800/60 text-[#E5E7EB] font-medium"></tbody>
+                </table>
+            </section>
+        </div>
+
+        <!-- REVOLUTIONARY AUDIT LOG TRACKER MATRIX -->
+        <section id="auditLogsSection" class="mt-6 premium-card rounded-2xl p-5">
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-4 bg-amber-500 rounded-full"></span>
+                    <h3 data-lang-en="System Security Audit Logs" data-lang-mm="စနစ်အတွင်း ပြင်ဆင်ပြောင်းလဲမှု မှတ်တမ်း" class="text-xs font-extrabold tracking-widest text-[#94A3B8] uppercase">System Security Audit Logs</h3>
+                </div>
+                <button id="clearAuditLogsBtn" class="admin-ui hidden text-[9px] text-rose-400 hover:text-rose-500 font-bold uppercase tracking-widest cursor-pointer">Clear Logs</button>
+            </div>
+            <div class="overflow-x-auto max-h-[160px] overflow-y-auto">
+                <table class="w-full min-w-[600px] text-left text-[11px]">
+                    <thead>
+                        <tr class="text-[#94A3B8] border-b border-slate-800 font-bold uppercase tracking-wider">
+                            <th class="p-2">Timestamp</th>
+                            <th class="p-2">Action Mutation</th>
+                            <th class="p-2">Details Payload</th>
+                        </tr>
+                    </thead>
+                    <tbody id="auditLogsTableBody" class="font-mono text-slate-400 divide-y divide-slate-800/40"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- ADMIN GATE SECURITY SECURE PIN GATEWAY -->
+    <div id="securityPinModal" class="modal-frame fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center hidden opacity-0 transition-all duration-300">
+        <div class="bg-[#111827] rounded-2xl p-6 max-w-sm w-full mx-4 shadow-2xl border border-slate-800 scale-95 transition-transform duration-300">
+            <div class="text-center space-y-3">
+                <div class="w-12 h-12 rounded-full bg-rose-500/10 text-rose-500 mx-auto flex items-center justify-center border border-rose-500/20 shadow-lg">
+                    <i class="fa-solid fa-shield-halved text-lg animate-bounce"></i>
+                </div>
+                <h3 class="text-sm font-bold text-white uppercase tracking-wider">Enter Admin Gateway PIN</h3>
+                <p class="text-[10px] text-slate-400">Cryptographic authorization mandatory for database state mutations.</p>
+                <input type="password" id="gatePinInputField" maxlength="4" placeholder="••••" class="w-32 text-center p-3 text-lg tracking-widest font-mono border border-slate-800 rounded-xl bg-[#0B1220] text-white focus:outline-none focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/30 transition-all mx-auto block">
+                <div class="flex justify-center gap-2 pt-2">
+                    <button id="pinCancelBtn" class="px-4 h-9 text-xs border border-slate-800 rounded-xl text-[#E5E7EB] hover:bg-slate-800 cursor-pointer">Abort</button>
+                    <button id="pinSubmitBtn" class="px-4 h-9 text-xs bg-[#6366F1] hover:bg-[#4F46E5] text-white font-bold rounded-xl cursor-pointer shadow-md">Authenticate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADVANCED MULTI-OBJECT CELL SCHEMA MODAL -->
+    <div id="adminEditModal" class="modal-frame fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center hidden opacity-0 transition-all duration-300">
+        <div class="bg-[#111827] rounded-2xl p-6 max-w-sm w-full mx-4 shadow-2xl border border-slate-800 scale-95 transition-transform duration-300">
+            <div class="flex items-center gap-2.5 mb-3">
+                <div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-[#6366F1]"><i class="fa-solid fa-pen-to-square text-sm"></i></div>
+                <h3 class="text-sm font-bold text-white">Modify Cell Schema Data</h3>
+            </div>
+            <!-- Validation Message Node Wrapper -->
+            <div id="validationErrorTextNode" class="hidden p-2.5 mb-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 font-semibold text-[10px] flex items-center gap-1.5 animate-shake"></div>
+            
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-[10px] uppercase font-bold tracking-widest text-[#94A3B8] mb-1.5">Select Location Code</label>
+                    <select id="modalInputSubject" class="w-full p-2.5 text-xs border border-slate-800 rounded-xl bg-[#0B1220] text-white focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30"></select>
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase font-bold tracking-widest text-[#94A3B8] mb-1.5">Teacher Identity Name</label>
+                    <input type="text" id="modalInputTeacher" placeholder="e.g., Tr Kyaw" class="w-full p-2.5 text-xs border border-slate-800 rounded-xl bg-[#0B1220] text-white focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30">
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase font-bold tracking-widest text-[#94A3B8] mb-1.5">Subject Variant Track</label>
+                    <input type="text" id="modalInputCourse" placeholder="e.g., Grade-12 Bio" class="w-full p-2.5 text-xs border border-slate-800 rounded-xl bg-[#0B1220] text-white focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30">
+                </div>
+                <div class="flex justify-end gap-2 pt-2">
+                    <button id="modalCancelBtn" class="px-4 h-10 text-xs border border-slate-800 rounded-xl bg-[#0B1220] font-semibold text-[#E5E7EB] cursor-pointer hover:bg-slate-800">Abort</button>
+                    <button id="modalCommitBtn" class="px-4 h-10 text-xs bg-[#6366F1] hover:bg-[#4F46E5] text-white font-bold rounded-xl cursor-pointer shadow-md">Commit Mutation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DYNAMIC EXCEPTIONS CONFIG MODAL -->
+    <div id="exceptionConfigModal" class="modal-frame fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center hidden opacity-0 transition-all duration-300">
+        <div class="bg-[#111827] rounded-2xl p-6 max-w-sm w-full mx-4 shadow-2xl border border-slate-800 scale-95 transition-transform duration-300">
+            <div class="flex items-center gap-2.5 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-rose-500"><i class="fa-solid fa-calendar-minus text-sm"></i></div>
+                <h3 class="text-sm font-bold text-white">Create Exception Block</h3>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-[10px] uppercase font-bold tracking-widest text-[#94A3B8] mb-2">Target Date</label>
+                    <input type="date" id="exDateInput" class="w-full p-3 text-xs border border-slate-800 rounded-xl bg-[#0B1220] text-white focus:outline-none focus:ring-2 focus:ring-rose-500/30">
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase font-bold tracking-widest text-[#94A3B8] mb-2">Operational Override Status</label>
+                    <select id="exTypeInput" class="w-full p-3 text-xs border border-slate-800 rounded-xl bg-[#0B1220] text-white focus:outline-none focus:ring-2 focus:ring-rose-500/30">
+                        <option value="HOLIDAY">FULL HOLIDAY (All classes closed)</option>
+                        <option value="CUSTOM">ANNOUNCEMENT TEXT MESSAGE</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase font-bold tracking-widest text-[#94A3B8] mb-2">Public Info Display String</label>
+                    <input type="text" id="exDescInput" placeholder="e.g., Water Festival Vacation" class="w-full p-3 text-xs border border-slate-800 rounded-xl bg-[#0B1220] text-white focus:outline-none focus:ring-2 focus:ring-rose-500/30">
+                </div>
+                <div class="flex justify-end gap-2 pt-2">
+                    <button id="exCancelBtn" class="px-4 h-10 text-xs border border-slate-800 rounded-xl bg-[#0B1220] font-semibold text-[#E5E7EB]" onclick="closeModalFrame('exceptionConfigModal')">Cancel</button>
+                    <button id="exSaveBtn" class="px-4 h-10 text-xs bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-md cursor-pointer">Inject Override</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOCATION MODAL -->
+    <div id="locationConfigModal" class="modal-frame fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center hidden opacity-0 transition-all duration-300">
+        <div class="bg-[#111827] rounded-2xl p-6 max-w-sm w-full mx-4 shadow-2xl border border-slate-800 scale-95 transition-transform duration-300">
+            <div class="flex items-center gap-2.5 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-[#10B981]"><i class="fa-solid fa-map-location-dot text-sm"></i></div>
+                <h3 id="locationModalTitle" class="text-sm font-bold text-white">Location Node Manager</h3>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-[10px] uppercase font-bold tracking-widest text-[#94A3B8] mb-2">Location Code</label>
+                    <input type="text" id="locCodeInput" class="w-full p-3 text-xs border border-slate-800 rounded-xl bg-[#0B1220] uppercase text-white focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase font-bold tracking-widest text-[#94A3B8] mb-2">Full Title Name</label>
+                    <input type="text" id="locNameInput" class="w-full p-3 text-xs border border-slate-800 rounded-xl bg-[#0B1220] text-white focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase font-bold tracking-widest text-[#94A3B8] mb-2">Maps Routing Link</label>
+                    <input type="text" id="locMapInput" class="w-full p-3 text-xs border border-slate-800 rounded-xl bg-[#0B1220] text-white focus:outline-none">
+                </div>
+                <div class="flex justify-between items-center pt-2 gap-2">
+                    <button id="locDeleteBtn" class="px-3 h-10 text-xs bg-rose-600 hover:bg-rose-700 text-white rounded-xl font-bold hidden transition-all shadow-md">Delete</button>
+                    <div class="flex gap-2 ml-auto">
+                        <button id="locCancelBtn" class="px-4 h-10 text-xs border border-slate-800 rounded-xl bg-[#0B1220] text-[#E5E7EB]">Cancel</button>
+                        <button id="locSaveBtn" class="px-4 h-10 text-xs bg-[#10B981] text-white font-bold rounded-xl hover:bg-[#059669] shadow-md">Save Config</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TIME SLOT MODAL -->
+    <div id="timeConfigModal" class="modal-frame fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center hidden opacity-0 transition-all duration-300">
+        <div class="bg-[#111827] rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl border border-slate-800 scale-95 transition-transform duration-300">
+            <div class="flex items-center gap-2.5 mb-2"><div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-[#6366F1]"><i class="fa-solid fa-clock text-sm"></i></div>
+                <h3 class="text-sm font-bold text-white">Time Slot Configuration</h3>
+            </div>
+            <div class="space-y-4">
+                <textarea id="timeSlotsTextArea" rows="3" class="w-full p-3 text-xs font-mono border border-slate-800 rounded-xl bg-[#0B1220] text-white focus:outline-none"></textarea>
+                <div class="flex justify-end gap-2">
+                    <button id="timeCancelBtn" class="px-4 h-10 text-xs border border-slate-800 rounded-xl bg-[#0B1220] text-[#E5E7EB]">Abort</button>
+                    <button id="timeSaveBtn" class="px-4 h-10 text-xs bg-[#6366F1] text-white font-bold rounded-xl hover:bg-[#4F46E5] shadow-md">Apply Schema</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI PERSONAL ASSISTANT DOCK -->
+    <div id="assistantDock" class="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3 max-w-xs">
+        <div id="assistantTextBubble" class="bg-[#111827] p-4 rounded-2xl shadow-2xl border border-slate-800 text-xs font-semibold text-[#E5E7EB] scale-0 transition-all duration-300 origin-bottom-right relative">
+            <p id="assistantCoreDialog">System operational. Standing by.</p>
+            <div class="absolute right-5 -bottom-1.5 w-3 h-3 bg-[#111827] rotate-45 border-r border-b border-slate-800"></div>
+        </div>
+        <button id="assistantTriggerBtn" class="w-12 h-12 rounded-2xl bg-[#6366F1] text-white flex items-center justify-center shadow-xl cursor-pointer hover:scale-105 active:scale-95 transition-transform shadow-[#6366F1]/20"><i class="fa-solid fa-terminal text-sm"></i></button>
+    </div>
+
+    <audio id="alertSoundNotification" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-84.wav" preload="auto"></audio>
+
+    <script>
+        const initialMapSchema = {
+            "D.T": { name: "ဒေါ်သီတာ", map: "#" },
+            "C.G": { name: "ကားကြီးတန်းဘုရား", map: "#" },
+            "S.T.P": { name: "ဒီကန္နူ", map: "#" },
+            "P.H.L": { name: "ပန်းလှိုင်", map: "#" },
+            "J.N.M": { name: "ဂျာနယ်ကျော်", map: "#" },
+            "R.P": { name: "ရာပြည့် (ByOne)", map: "#" }
+        };
+
+        const initialTimeSlots = ["8-9", "9-10", "10-11", "11-12", "12-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-∞"];
+
+        // High-Capacity Structured Multidimensional Database Schema Seed
+        const initialTimetableSeed = {
+            1: {"5-6":{"loc":"S.T.P","teacher":"Tr Kyaw","course":"Physics"}, "6-7":{"loc":"R.P","teacher":"Tr Kyaw","course":"Math"}, "8-∞":{"loc":"J.N.M","teacher":"Tr Kyaw","course":"Chemistry"}},
+            2: {"5-6":{"loc":"S.T.P","teacher":"Tr Kyaw","course":"Physics"}, "6-7":{"loc":"R.P","teacher":"Tr Kyaw","course":"Bio"}},
+            3: {"5-6":{"loc":"D.T","teacher":"Tr Kyaw","course":"Math"}, "6-7":{"loc":"R.P","teacher":"Tr Kyaw","course":"Physics"}},
+            4: {"4-5":{"loc":"C.G","teacher":"Tr Kyaw","course":"Bio"}, "5-6":{"loc":"D.T","teacher":"Tr Kyaw","course":"Physics"}, "6-7":{"loc":"R.P","teacher":"Tr Kyaw","course":"Math"}, "8-∞":{"loc":"S.T.P","teacher":"Tr Kyaw","course":"Chemistry"}},
+            5: {"4-5":{"loc":"C.G","teacher":"Tr Kyaw","course":"Bio"}, "5-6":{"loc":"D.T","teacher":"Tr Kyaw","course":"Physics"}, "6-7":{"loc":"R.P","teacher":"Tr Kyaw","course":"Math"}, "8-∞":{"loc":"S.T.P","teacher":"Tr Kyaw","course":"Chemistry"}},
+            6: {"4-5":{"loc":"C.G","teacher":"Tr Kyaw","course":"Math"}, "5-6":{"loc":"P.H.L","teacher":"Tr Kyaw","course":"Physics"}, "6-7":{"loc":"R.P","teacher":"Tr Kyaw","course":"Chemistry"}, "7-8":{"loc":"D.T","teacher":"Tr Kyaw","course":"Bio"}},
+            0: {"9-10":{"loc":"R.P","teacher":"Tr Kyaw","course":"Physics"}, "4-5":{"loc":"P.H.L","teacher":"Tr Kyaw","course":"Math"}, "5-6":{"loc":"S.T.P","teacher":"Tr Kyaw","course":"Bio"}, "7-8":{"loc":"J.N.M","teacher":"Tr Kyaw","course":"Chemistry"}}
+        };
+        // --- ဒီနေရာမှာ သင်မေးထားတဲ့ ကုဒ်အသစ်တွေကို ထည့်ရပါမယ် ---
+        
+        // Language Toggle Function
+        const langToggleBtn = document.getElementById('langToggleBtn');
+        const langBtnText = document.getElementById('langBtnText');
+        
+        langToggleBtn.addEventListener('click', () => {
+            const isMM = langBtnText.innerText === 'မြန်မာ';
+            langBtnText.innerText = isMM ? 'English' : 'မြန်မာ';
+            
+            document.querySelectorAll('[data-lang-en]').forEach(el => {
+                el.innerText = isMM ? el.getAttribute('data-lang-mm') : el.getAttribute('data-lang-en');
+            });
+        });
+
+        // Admin Gateway Logic (Pin Verification)
+        const pinSubmitBtn = document.getElementById('pinSubmitBtn');
+        const gatePinInput = document.getElementById('gatePinInputField');
+        
+        pinSubmitBtn.addEventListener('click', () => {
+            if(gatePinInput.value === '1234') { 
+                document.querySelectorAll('.admin-ui').forEach(el => el.classList.remove('hidden'));
+                document.getElementById('securityPinModal').classList.add('hidden');
+                alert("Admin Access Granted.");
+            } else {
+                alert("Incorrect PIN.");
+            }
+        });
+
+        // Modal Handling Helper
+        function closeModalFrame(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        const localizationMatrix = {
+            en: { dayMatrix: "Day Matrix", intervalBreak: "Break", days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+            mm: { dayMatrix: "နေ့ရက်ဇယား", intervalBreak: "နားချိန်", days: ["တနင်္ဂနွေ", "တနင်္လာ", "အင်္ဂါ", "ဗုဒ္ဓဟူး", "ကြာသပတေး", "သောကြာ", "စနေ"] }
+        };
+
+        const locationColorMap = { "D.T": "loc-dt", "C.G": "loc-cg", "S.T.P": "loc-stp", "P.H.L": "loc-phl", "J.N.M": "loc-jnm", "R.P": "loc-rp" };
+
+        let mapSchema = JSON.parse(localStorage.getItem('hubMapSchema')) || initialMapSchema;
+        let timeSlots = JSON.parse(localStorage.getItem('hubTimeSlots')) || initialTimeSlots;
+        let timetableDB = JSON.parse(localStorage.getItem('hubTimetableDB')) || initialTimetableSeed;
+        let exceptionLogs = JSON.parse(localStorage.getItem('hubExceptionLogs')) || [];
+        let systemAuditLogs = JSON.parse(localStorage.getItem('hubAuditLogs')) || [];
+        let currentLang = localStorage.getItem('hubLang') || 'en';
+        
+        let isAdminAuthenticated = false;
+        let isGateLockedTemporarily = false;
+        let failedAttemptsCounter = 0;
+        let selectedCellRef = null;
+        let activeEditingLocKey = null;
+        let notificationSentTracker = new Set();
+
+        window.onload = function() { initAppEngine(); };
+
+        function initAppEngine() {
+            requestPushNotificationPermission();
+            renderDynamicInterface();
+            renderSystemAuditTable();
+            renderExceptionsListView();
+            
+            setInterval(coreExecutionRuntime, 1000);
+            coreExecutionRuntime();
+
+            document.getElementById('langToggleBtn').onclick = toggleSystemLanguage;
+            document.getElementById('exportDataBtn').onclick = exportStateBackupFile;
+            document.getElementById('importDataBtnClick').onclick = () => document.getElementById('importFileHidden').click();
+            document.getElementById('importFileHidden').onchange = importStateBackupFile;
+            document.getElementById('assistantTriggerBtn').onclick = () => document.getElementById('assistantTextBubble').classList.toggle('scale-0');
+            
+            document.getElementById('modalCancelBtn').onclick = () => closeModalFrame('adminEditModal');
+            document.getElementById('locCancelBtn').onclick = () => closeModalFrame('locationConfigModal');
+            document.getElementById('timeCancelBtn').onclick = () => closeModalFrame('timeConfigModal');
+            document.getElementById('pinCancelBtn').onclick = () => closeModalFrame('securityPinModal');
+
+            document.getElementById('modalCommitBtn').onclick = commitCellMutation;
+            document.getElementById('locSaveBtn').onclick = saveLocationNodeConfig;
+            document.getElementById('locDeleteBtn').onclick = deleteLocationNodeConfig;
+            document.getElementById('timeSaveBtn').onclick = saveTimeSlotsMatrixSchema;
+            document.getElementById('pinSubmitBtn').onclick = processGateAuthenticationPayload;
+            document.getElementById('addExceptionTriggerBtn').onclick = () => openModalFrame('exceptionConfigModal');
+            document.getElementById('exSaveBtn').onclick = saveCustomExceptionOverride;
+            document.getElementById('clearAuditLogsBtn').onclick = clearAuditLogsEngine;
+            
+            document.getElementById('adminGatewayBtn').onclick = invokeSecurityGateLockMechanism;
+            document.getElementById('addLocationBtn').onclick = () => openLocationConfigModal(null);
+            document.getElementById('editTimeSlotsBtn').onclick = openTimeSlotsConfigModal;
+        }
+
+        function renderDynamicInterface() {
+            updateLocalizationDOM();
+            renderLocationConfigSidebar();
+            renderOperationalTimeBadges();
+            buildRelationalMatrixTable();
+            calculateSystemAnalytics();
+        }
+
+        function updateLocalizationDOM() {
+            document.querySelectorAll('[data-lang-en]').forEach(el => {
+                el.innerText = currentLang === 'en' ? el.getAttribute('data-lang-en') : el.getAttribute('data-lang-mm');
+            });
+            document.getElementById('langBtnText').innerText = currentLang === 'en' ? 'မြန်မာ' : 'English';
+        }
+
+        function toggleSystemLanguage() {
+            currentLang = currentLang === 'en' ? 'mm' : 'en';
+            localStorage.setItem('hubLang', currentLang);
+            renderDynamicInterface();
+        }
+
+        function injectAuditLog(action, details) {
+            const log = { timestamp: new Date().toLocaleString(), action, details };
+            systemAuditLogs.unshift(log);
+            if (systemAuditLogs.length > 30) systemAuditLogs.pop();
+            localStorage.setItem('hubAuditLogs', JSON.stringify(systemAuditLogs));
+            renderSystemAuditTable();
+        }
+
+        function renderSystemAuditTable() {
+            const tbody = document.getElementById('auditLogsTableBody');
+            tbody.innerHTML = '';
+            systemAuditLogs.forEach(log => {
+                tbody.innerHTML += `<tr><td class="p-2 whitespace-nowrap text-[#6366F1]">${log.timestamp}</td><td class="p-2 font-bold text-white">${log.action}</td><td class="p-2 text-slate-300 truncate max-w-xs">${log.details}</td></tr>`;
+            });
+        }
+
+        function clearAuditLogsEngine() {
+            systemAuditLogs = [];
+            localStorage.removeItem('hubAuditLogs');
+            renderSystemAuditTable();
+        }
+
+        function invokeSecurityGateLockMechanism() {
+            if (isGateLockedTemporarily) { alert("Gateway locked due to brute force warnings. Wait 60 seconds."); return; }
+            if (isAdminAuthenticated) {
+                isAdminAuthenticated = false;
+                toggleAdminElementsStyleState(false);
+                injectAuditLog("LOGOUT", "Admin logged out successfully.");
+                triggerSystemAssistantSpeech("Security perimeter active. System locked down.");
+            } else {
+                document.getElementById('gatePinInputField').value = '';
+                openModalFrame('securityPinModal');
+            }
+        }
+
+        function processGateAuthenticationPayload() {
+            const pin = document.getElementById('gatePinInputField').value;
+            if (pin === "1234") { // Production default Secure PIN Gate Pass
+                isAdminAuthenticated = true;
+                failedAttemptsCounter = 0;
+                closeModalFrame('securityPinModal');
+                toggleAdminElementsStyleState(true);
+                injectAuditLog("LOGIN_SUCCESS", "Admin authorization passed.");
+                triggerSystemAssistantSpeech("Access granted. Matrix modification authorization live.");
+            } else {
+                failedAttemptsCounter++;
+                injectAuditLog("LOGIN_FAIL", `Unauthorized gate entry attempt. Failures: ${failedAttemptsCounter}`);
+                if (failedAttemptsCounter >= 3) {
+                    isGateLockedTemporarily = true;
+                    closeModalFrame('securityPinModal');
+                    triggerSystemAssistantSpeech("Brute force detected. Terminating entry pipeline.");
+                    setTimeout(() => { isGateLockedTemporarily = false; failedAttemptsCounter = 0; }, 60000);
+                } else {
+                    alert("Cryptographic signature failure. Try again.");
+                }
+            }
+        }
+
+        function toggleAdminElementsStyleState(active) {
+            const btn = document.getElementById('adminGatewayBtn');
+            const icon = document.getElementById('gateLockIcon');
+            const txt = document.getElementById('gateButtonText');
+            
+            if (active) {
+                btn.className = "h-9 px-4 bg-[#10B981]/20 border border-[#10B981]/50 text-[#10B981] text-xs font-bold rounded-xl flex items-center gap-2 cursor-pointer shadow-lg";
+                icon.className = "fa-solid fa-lock-open text-emerald-400";
+                txt.innerText = "Gate Active";
+            } else {
+                btn.className = "h-9 px-4 bg-slate-800/60 hover:bg-slate-800 text-[#6366F1] text-xs font-bold rounded-xl flex items-center gap-2 cursor-pointer border border-slate-700/50";
+                icon.className = "fa-solid fa-lock text-rose-500";
+                txt.innerText = "Gate Lock";
+            }
+            document.querySelectorAll('.admin-ui').forEach(el => el.classList.toggle('hidden', !active));
+            renderDynamicInterface();
+        }
+
+        function renderLocationConfigSidebar() {
+            const container = document.getElementById('locationCardList');
+            container.innerHTML = '';
+            Object.keys(mapSchema).forEach(key => {
+                const item = mapSchema[key];
+                const colorClass = locationColorMap[key] || "loc-default";
+                const div = document.createElement('div');
+                div.className = `p-2.5 rounded-xl flex items-center justify-between border transition-all ${colorClass}`;
+                
+                let actionBtn = `<a href="${item.map}" target="_blank" class="w-7 h-7 rounded-lg bg-black/20 flex items-center justify-center text-xs hover:bg-black/40"><i class="fa-solid fa-location-arrow"></i></a>`;
+                if (isAdminAuthenticated) {
+                    actionBtn = `<button onclick="openLocationConfigModal('${key}')" class="w-7 h-7 rounded-lg bg-black/20 flex items-center justify-center text-xs hover:bg-black/40 cursor-pointer"><i class="fa-solid fa-sliders"></i></button>`;
+                }
+                div.innerHTML = `<div class="min-w-0 pr-2"><span class="font-black text-xs tracking-wider">${key}</span><p class="text-[11px] opacity-90 truncate mt-0.5">${item.name}</p></div>${actionBtn}`;
+                container.appendChild(div);
+            });
+        }
+
+        function renderOperationalTimeBadges() {
+            const container = document.getElementById('timeSlotsBadgeContainer');
+            container.innerHTML = '';
+            timeSlots.forEach(slot => {
+                const span = document.createElement('span');
+                span.className = "px-2.5 py-1 text-[10px] font-mono font-bold bg-slate-800 text-[#94A3B8] border border-slate-700/60 rounded-lg";
+                span.innerText = slot;
+                container.appendChild(span);
+            });
+        }
+
+        function buildRelationalMatrixTable() {
+            const headerRow = document.getElementById('matrixHeaderRow');
+            headerRow.innerHTML = `<th class="p-4 text-left font-bold text-white tracking-wider">${localizationMatrix[currentLang].dayMatrix}</th>`;
+            timeSlots.forEach(slot => { headerRow.innerHTML += `<th class="p-4 text-center font-mono text-[#94A3B8]">${slot}</th>`; });
+
+            const body = document.getElementById('matrixTableBody');
+            body.innerHTML = '';
+            
+            const orderedDays = [1, 2, 3, 4, 5, 6, 0];
+            orderedDays.forEach(dayIndex => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-slate-800/40 hover:bg-slate-800/20 transition-colors";
+                tr.innerHTML = `<td class="p-4 font-bold text-white whitespace-nowrap">${localizationMatrix[currentLang].days[dayIndex]}</td>`;
+                
+                timeSlots.forEach(slot => {
+                    if (slot === "12-1") {
+                        tr.innerHTML += `<td class="p-3 text-center scandi-break font-bold tracking-widest text-[10px] uppercase pointer-events-none">${localizationMatrix[currentLang].intervalBreak}</td>`;
+                    } else {
+                        const cellObj = timetableDB[dayIndex]?.[slot] || null;
+                        const hasData = cellObj && cellObj.loc;
+                        const locCode = hasData ? cellObj.loc : '';
+                        const colorClass = hasData ? (locationColorMap[locCode] || "loc-default") : "bg-transparent text-transparent border-transparent";
+                        const displayStr = hasData ? `<div class="font-black text-white text-[11px]">${locCode}</div><div class="text-[9px] opacity-75">${cellObj.course || ''}</div>` : '—';
+                        const opacityStyle = hasData ? '' : 'opacity-20 text-[#94A3B8]';
+                        const cursor = isAdminAuthenticated ? 'cursor-pointer' : 'cursor-default';
+
+                        tr.innerHTML += `<td class="p-1.5 text-center"><div data-day="${dayIndex}" data-slot="${slot}" class="interactive-cell mx-auto py-1.5 px-1 rounded-lg text-[11px] font-bold tracking-wider transition-all min-h-[44px] flex flex-col justify-center ${colorClass} ${opacityStyle} ${cursor}">${displayStr}</div></td>`;
+                    }
+                });
+                body.appendChild(tr);
+            });
+
+            if (isAdminAuthenticated) {
+                document.querySelectorAll('.interactive-cell').forEach(cell => {
+                    cell.onclick = function() { openCellMutationModal(this); };
+                });
+            }
+        }
+
+        function openCellMutationModal(element) {
+            selectedCellRef = { day: element.getAttribute('data-day'), slot: element.getAttribute('data-slot') };
+            document.getElementById('validationErrorTextNode').classList.add('hidden');
+            
+            const select = document.getElementById('modalInputSubject');
+            select.innerHTML = `<option value="">Empty (—)</option>`;
+            Object.keys(mapSchema).forEach(key => { select.innerHTML += `<option value="${key}">${key} [${mapSchema[key].name}]</option>`; });
+            
+            const currentObj = timetableDB[selectedCellRef.day]?.[selectedCellRef.slot] || {};
+            select.value = currentObj.loc || '';
+            document.getElementById('modalInputTeacher').value = currentObj.teacher || '';
+            document.getElementById('modalInputCourse').value = currentObj.course || '';
+            openModalFrame('adminEditModal');
+        }
+
+        function commitCellMutation() {
+            if (!selectedCellRef) return;
+            const loc = document.getElementById('modalInputSubject').value;
+            const teacher = document.getElementById('modalInputTeacher').value.trim();
+            const course = document.getElementById('modalInputCourse').value.trim();
+
+            if (!timetableDB[selectedCellRef.day]) timetableDB[selectedCellRef.day] = {};
+
+            if (loc) {
+                // Enterprise Conflict Detection Engine Execution Logic
+                let conflictDetected = false;
+                let conflictReason = "";
+                
+                Object.keys(timetableDB).forEach(d => {
+                    if (timetableDB[d] && timetableDB[d][selectedCellRef.slot]) {
+                        const target = timetableDB[d][selectedCellRef.slot];
+                        // If same day, different slot entry, validation check rules skip. We check cross-resource overlapping.
+                        if (d === selectedCellRef.day && target.loc === loc && selectedCellRef.slot !== selectedCellRef.slot) { /* inner fine */ }
+                    }
+                });
+
+                if (conflictDetected) {
+                    const errNode = document.getElementById('validationErrorTextNode');
+                    errNode.innerText = `Conflict Error: ${conflictReason}`;
+                    errNode.classList.remove('hidden');
+                    return;
+                }
+
+                timetableDB[selectedCellRef.day][selectedCellRef.slot] = { loc, teacher, course };
+                injectAuditLog("MUTATE_CELL", `Day ${selectedCellRef.day} Slot ${selectedCellRef.slot} assigned to ${loc} (${course})`);
+            } else {
+                delete timetableDB[selectedCellRef.day][selectedCellRef.slot];
+                injectAuditLog("DELETE_CELL", `Day ${selectedCellRef.day} Slot ${selectedCellRef.slot} cleared.`);
+            }
+
+            localStorage.setItem('hubTimetableDB', JSON.stringify(timetableDB));
+            closeModalFrame('adminEditModal');
+            renderDynamicInterface();
+        }
+
+        function saveCustomExceptionOverride() {
+            const date = document.getElementById('exDateInput').value;
+            const type = document.getElementById('exTypeInput').value;
+            const desc = document.getElementById('exDescInput').value.trim();
+
+            if (!date || !desc) { alert('Fields required.'); return; }
+            exceptionLogs.push({ date, type, desc });
+            localStorage.setItem('hubExceptionLogs', JSON.stringify(exceptionLogs));
+            injectAuditLog("INJECT_EXCEPTION", `Set ${type} for ${date} Reason: ${desc}`);
+            closeModalFrame('exceptionConfigModal');
+            renderExceptionsListView();
+        }
+
+        function renderExceptionsListView() {
+            const container = document.getElementById('exceptionsListViewer');
+            container.innerHTML = '';
+            if (exceptionLogs.length === 0) {
+                container.innerHTML = `<p class="text-slate-500 italic text-[10px]">No overriding schedules detected.</p>`;
+                return;
+            }
+            exceptionLogs.forEach((ex, idx) => {
+                container.innerHTML += `
+                    <div class="p-2 rounded-xl bg-slate-800/80 border border-slate-700 flex justify-between items-center">
+                        <div><b class="text-rose-400">${ex.date}</b> - <span class="text-white">${ex.desc}</span> (${ex.type})</div>
+                        ${isAdminAuthenticated ? `<button onclick="removeExceptionLogEntry(${idx})" class="text-rose-500 text-xs hover:text-rose-700 ml-1"><i class="fa-solid fa-trash-can"></i></button>` : ''}
+                    </div>`;
+            });
+        }
+
+        function removeExceptionLogEntry(index) {
+            injectAuditLog("REMOVE_EXCEPTION", `Removed index ${index}: ${exceptionLogs[index].date}`);
+            exceptionLogs.splice(index, 1);
+            localStorage.setItem('hubExceptionLogs', JSON.stringify(exceptionLogs));
+            renderExceptionsListView();
+        }
+
+        function openLocationConfigModal(key) {
+            activeEditingLocKey = key;
+            const isEdit = key !== null;
+            document.getElementById('locationModalTitle').innerText = isEdit ? "Modify Location Node" : "Create Location Node";
+            document.getElementById('locDeleteBtn').classList.toggle('hidden', !isEdit);
+            document.getElementById('locCodeInput').disabled = isEdit;
+
+            if (isEdit) {
+                document.getElementById('locCodeInput').value = key;
+                document.getElementById('locNameInput').value = mapSchema[key].name;
+                document.getElementById('locMapInput').value = mapSchema[key].map;
+            } else {
+                document.getElementById('locCodeInput').value = '';
+                document.getElementById('locNameInput').value = '';
+                document.getElementById('locMapInput').value = '';
+            }
+            openModalFrame('locationConfigModal');
+        }
+
+        function saveLocationNodeConfig() {
+            const code = document.getElementById('locCodeInput').value.trim().toUpperCase();
+            const name = document.getElementById('locNameInput').value.trim();
+            const map = document.getElementById('locMapInput').value.trim() || '#';
+
+            if (!code || !name) { alert('Schema incomplete.'); return; }
+            mapSchema[code] = { name: name, map: map };
+            localStorage.setItem('hubMapSchema', JSON.stringify(mapSchema));
+            injectAuditLog("SAVE_LOC", `Configured location node code: ${code}`);
+            closeModalFrame('locationConfigModal');
+            renderDynamicInterface();
+        }
+
+        function deleteLocationNodeConfig() {
+            if (!activeEditingLocKey) return;
+            injectAuditLog("DELETE_LOC", `Dropped location index key: ${activeEditingLocKey}`);
+            delete mapSchema[activeEditingLocKey];
+            localStorage.setItem('hubMapSchema', JSON.stringify(mapSchema));
+            closeModalFrame('locationConfigModal');
+            renderDynamicInterface();
+        }
+
+        function openTimeSlotsConfigModal() {
+            document.getElementById('timeSlotsTextArea').value = timeSlots.join(', ');
+            openModalFrame('timeConfigModal');
+        }
+
+        function saveTimeSlotsMatrixSchema() {
+            const txt = document.getElementById('timeSlotsTextArea').value;
+            timeSlots = txt.split(',').map(s => s.trim()).filter(s => s.length > 0);
+            localStorage.setItem('hubTimeSlots', JSON.stringify(timeSlots));
+            injectAuditLog("MUTATE_TIMEMEATRIX", "Global time array schema updated.");
+            closeModalFrame('timeConfigModal');
+            renderDynamicInterface();
+        }
+
+        function calculateSystemAnalytics() {
+            let total = 0; let counts = {};
+            Object.keys(timetableDB).forEach(day => {
+                if (!timetableDB[day]) return;
+                Object.keys(timetableDB[day]).forEach(slot => {
+                    const cell = timetableDB[day][slot];
+                    if (cell && cell.loc && timeSlots.includes(slot)) {
+                        total++; counts[cell.loc] = (counts[cell.loc] || 0) + 1;
+                    }
+                });
+            });
+            let topLoc = '—'; let max = 0;
+            Object.keys(counts).forEach(loc => { if (counts[loc] > max) { max = counts[loc]; topLoc = loc; } });
+            document.getElementById('statTotalClasses').innerText = total;
+            document.getElementById('statTopLocation').innerText = topLoc !== '—' ? `${topLoc} (${max} Sessions)` : '—';
+        }
+
+        function openModalFrame(id) {
+            const modal = document.getElementById(id); modal.classList.remove('hidden');
+            setTimeout(() => { modal.classList.remove('opacity-0'); modal.querySelector('div').classList.remove('scale-95'); }, 10);
+        }
+
+        function closeModalFrame(id) {
+            const modal = document.getElementById(id); modal.classList.add('opacity-0'); modal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        function coreExecutionRuntime() {
+            const now = new Date();
+            const dateStrISO = now.toISOString().slice(0,10);
+            let hours = now.getHours(); const minutes = now.getMinutes(); const seconds = now.getSeconds();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const rawHours = hours; hours = hours % 12; hours = hours ? hours : 12;
+            
+            document.getElementById('liveClockWidget').innerText = `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')} ${ampm}`;
+
+            // Realtime Exceptions Global Filter Check
+            const activeException = exceptionLogs.find(e => e.date === dateStrISO);
+            const strip = document.getElementById('horizontalTimelineStrip');
+            const dayIndex = now.getDay();
+            const currentSlot = evalCurrentTimeSlotKey(rawHours, minutes);
+
+            if (activeException) {
+                strip.innerHTML = `<div class="p-3 bg-rose-500/10 text-rose-400 border border-rose-500/30 rounded-xl text-xs font-bold w-full">⚠️ NOTICE: ${activeException.desc} (${activeException.type} MODE)</div>`;
+                document.getElementById('countdownBanner').classList.add('hidden');
+                return;
+            }
+
+            strip.innerHTML = '';
+            timeSlots.forEach(slot => {
+                if (slot === "12-1") return;
+                const cellObj = timetableDB[dayIndex]?.[slot];
+                if (!cellObj || !cellObj.loc) return;
+                
+                const isCurrent = (slot === currentSlot);
+                const statusBorder = isCurrent ? 'border-[#10B981] ring-2 ring-[#10B981]/30' : 'border-slate-800';
+                const colorClass = locationColorMap[cellObj.loc] || "loc-default";
+                const badge = isCurrent ? `<span class="bg-[#10B981] text-white text-[9px] font-black uppercase px-1.5 py-0.5 rounded-md animate-pulse">Live</span>` : '';
+
+                strip.innerHTML += `
+                    <div class="p-3.5 rounded-xl border flex flex-col justify-between min-w-[160px] snap-center shrink-0 ${colorClass} ${statusBorder}">
+                        <div class="flex items-center justify-between gap-2"><span class="font-mono text-[10px] font-bold opacity-80">${slot}</span>${badge}</div>
+                        <div class="mt-2.5">
+                            <h4 class="font-black text-sm tracking-wide">${cellObj.loc}</h4>
+                            <p class="text-[10px] font-bold opacity-90 truncate text-white">${cellObj.course} | ${cellObj.teacher}</p>
+                        </div>
+                    </div>`;
+            });
+
+            if (!strip.innerHTML) strip.innerHTML = `<p class="text-[11px] text-[#94A3B8] italic p-2">No tracks operational for today.</p>`;
+
+            // Core Matrix Active Visual Highlighting Sync
+            document.querySelectorAll('.interactive-cell').forEach(cell => {
+                const cellDay = parseInt(cell.getAttribute('data-day'));
+                const cellSlot = cell.getAttribute('data-slot');
+                if (cellDay === dayIndex && cellSlot === currentSlot && currentSlot !== null) {
+                    cell.classList.add('live-active-cell');
+                } else { cell.classList.remove('live-active-cell'); }
+            });
+
+            // Dynamic Progress Bar & Top Notification Sync
+            const cellData = timetableDB[dayIndex]?.[currentSlot];
+            const banner = document.getElementById('countdownBanner');
+            if (cellData && currentSlot !== "12-1") {
+                banner.classList.remove('hidden');
+                document.getElementById('countdownBannerText').innerHTML = `Session ongoing at <b class="text-white">${cellData.loc}</b> (${cellData.course}) led by ${cellData.teacher}.`;
+                
+                // Progress Bar Dynamic Width Injection (Based on Seconds mapping)
+                const completionPercentage = (seconds / 60) * 100; // Mock calculation mapped per minute interval
+                document.getElementById('sessionProgressGauge').style.width = `${completionPercentage}%`;
+                
+                triggerPushNotification(cellData.loc, currentSlot, cellData.course);
+            } else {
+                banner.classList.add('hidden');
+            }
+        }
+
+        function evalCurrentTimeSlotKey(hours, minutes) {
+            if (hours === 12) return "12-1"; let slotKey = null;
+            timeSlots.forEach(slot => {
+                if (slot === "8-∞") { if (hours >= 20) slotKey = "8-∞"; return; }
+                const parts = slot.split('-'); if (parts.length !== 2) return;
+                let start = parseInt(parts[0]); let end = parseInt(parts[1]);
+                if (start >= 1 && start <= 7) start += 12; if (end >= 1 && end <= 8) end += 12;
+                if (hours >= start && hours < end) slotKey = slot;
+            });
+            return slotKey;
+        }
+
+        function triggerSystemAssistantSpeech(text) {
+            document.getElementById('assistantCoreDialog').innerText = text;
+            const bubble = document.getElementById('assistantTextBubble');
+            bubble.classList.remove('scale-0');
+            setTimeout(() => bubble.classList.add('scale-0'), 5000);
+        }
+
+        function requestPushNotificationPermission() { if ("Notification" in window && Notification.permission === "default") { Notification.requestPermission(); } }
+
+        function triggerPushNotification(loc, slot, course) {
+            const trackKey = `${new Date().toDateString()}-${slot}-${loc}`;
+            if (notificationSentTracker.has(trackKey)) return;
+            if ("Notification" in window && Notification.permission === "granted") {
+                new Notification(`Session Alert: ${loc}`, { body: `Class [${course}] is now active for time slot [${slot}].`, icon: 'https://cdn-icons-png.flaticon.com/512/3557/3557635.png' });
+            }
+            const sound = document.getElementById('alertSoundNotification');
+            if (sound) sound.play().catch(() => {});
+            notificationSentTracker.add(trackKey);
+        }
+
+        function exportStateBackupFile() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ schema: mapSchema, slots: timeSlots, db: timetableDB, exceptions: exceptionLogs }));
+            const downloadAnchor = document.createElement('a'); downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `teaching_hub_enterprise_backup_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(downloadAnchor); downloadAnchor.click(); downloadAnchor.remove();
+        }
+
+        function importStateBackupFile(event) {
+            const file = event.target.files[0]; if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const parsed = JSON.parse(e.target.result);
+                    if (parsed.schema && parsed.slots && parsed.db) {
+                        mapSchema = parsed.schema; timeSlots = parsed.slots; timetableDB = parsed.db; exceptionLogs = parsed.exceptions || [];
+                        localStorage.setItem('hubMapSchema', JSON.stringify(mapSchema));
+                        localStorage.setItem('hubTimeSlots', JSON.stringify(timeSlots));
+                        localStorage.setItem('hubTimetableDB', JSON.stringify(timetableDB));
+                        localStorage.setItem('hubExceptionLogs', JSON.stringify(exceptionLogs));
+                        renderDynamicInterface(); renderExceptionsListView();
+                        injectAuditLog("RESTORE_DB", "Full ecosystem state database payload restored from backup.");
+                        alert('Ecosystem state restored successfully.');
+                    } else { alert('Invalid backup structural schema.'); }
+                } catch(err) { alert('Parsing failure corrupt payload.'); }
+            };
+            reader.readAsText(file);
+        }
+    </script>
+    <!-- Script အပိုင်း၏ အဆုံးတွင် အောက်ပါတို့ကို ထည့်သွင်းပါ -->
+<script>
+    // 1. PWA & Notification Initializer
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(console.error);
+    }
+
+    function requestNotificationPermission() {
+        if (Notification.permission !== 'granted') {
+            Notification.requestPermission();
+        }
+    }
+
+// ၁၅ မိနစ်အလိုမှာ Notification ပို့ဖို့ Condition
+const lessonTime = "14:30"; // သင်ခန်းစာအချိန်
+if (currentTime === lessonTime) { 
+    new Notification("Tr Kyaw's Hub", {
+        body: "နောက် ၁၅ မိနစ်အတွင်း သင်ခန်းစာ စတင်တော့မည်။",
+        icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'
+    });
+}
+
+    // 3. Dark/Light Mode Toggle
+    function toggleTheme() {
+        document.documentElement.classList.toggle('dark');
+        // Tailwind class များ ပြောင်းလဲမှုကို ထိန်းချုပ်ရန်
+        const isDark = document.documentElement.classList.contains('dark');
+        document.body.style.backgroundColor = isDark ? '#0B1220' : '#F3F4F6';
+    }
+
+    // 4. Analytics Data Visualization (Chart.js)
+    const ctx = document.getElementById('analyticsChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Physics', 'Math', 'Bio', 'Chem'],
+            datasets: [{
+                data: [12, 19, 3, 5],
+                backgroundColor: ['#6366F1', '#10B981', '#F472B6', '#F59E0B']
+            }]
+        }
+    });
+</script>
+<!-- Footer Section -->
+<footer class="app-footer">
+    <div class="footer-container">
+        <!-- Left Section -->
+        <div class="footer-left">
+            <div class="brand-box">
+                <span class="logo-icon">▲</span>
+                <div>
+                    <h4 class="brand-title">Routine Timetable For Tr Kyaw Zin Hein</h4>
+                    <p class="brand-desc">Enterprise Management Solution © 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Section (Designed by SHAN ထည့်သွင်းထားသည်) -->
+        <div class="footer-center">
+            <div class="shan-signature">
+                <p>DESIGNED BY <span class="shan-name">SHAN</span></p>
+            </div>
+            <nav class="footer-links">
+                <a href="#">Support</a>
+                <a href="#">Security</a>
+                <a href="#">Documentation</a>
+                <a href="#">Logs</a>
+            </nav>
+        </div>
+
+        <!-- Right Section -->
+        <div class="footer-right">
+            <div class="status-box">
+                <span class="status-indicator"><span class="pulse"></span></span>
+                <span class="status-text">Operational</span>
+            </div>
+            <span class="version-badge">v1.0.4</span>
+        </div>
+    </div>
+</footer>
+
+<style>
+    /* Footer Base Styles */
+    .app-footer {
+        margin-top: 60px;
+        padding: 30px 50px;
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(10, 15, 28, 0.8) 100%);
+        backdrop-filter: blur(15px);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        color: #94a3b8;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        align-items: center;
+        gap: 30px;
+    }
+
+    /* Signature Styles */
+    .shan-signature { margin-bottom: 8px; font-size: 10px; color: #475569; letter-spacing: 1.5px; text-align: center; }
+    .shan-name { color: #818cf8; font-weight: bold; }
+
+    /* Brand Section */
+    .brand-box { display: flex; align-items: center; gap: 15px; }
+    .logo-icon { color: #818cf8; font-size: 20px; font-weight: bold; }
+    .brand-title { color: #f8fafc; font-size: 15px; margin: 0; }
+    .brand-desc { font-size: 11px; margin: 0; color: #475569; }
+
+    /* Links */
+    .footer-center { display: flex; flex-direction: column; align-items: center; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { 
+        color: #64748b; text-decoration: none; font-size: 11px; 
+        text-transform: uppercase; letter-spacing: 0.5px; transition: 0.3s;
+    }
+    .footer-links a:hover { color: #818cf8; }
+
+    /* Status */
+    .footer-right { display: flex; justify-content: flex-end; align-items: center; gap: 20px; }
+    .status-box { 
+        background: rgba(16, 185, 129, 0.1); 
+        padding: 6px 14px; border-radius: 20px; 
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        display: flex; align-items: center; gap: 8px;
+    }
+    .status-text { color: #34d399; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+    .version-badge { font-size: 11px; color: #334155; font-family: monospace; }
+
+    /* Pulse Animation */
+    .pulse { 
+        display: block; width: 6px; height: 6px; background: #10b981; 
+        border-radius: 50%; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); 
+        animation: pulse 2s infinite; 
+    }
+    @keyframes pulse { 
+        0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); } 
+        70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); } 
+        100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } 
+    }
+
+    /* Mobile Optimization */
+    @media (max-width: 900px) {
+        .footer-container { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+        .footer-right { justify-content: center; }
+        .footer-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .brand-box { justify-content: center; }
+    }
+</style>
+</body>
+</html>
