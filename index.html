@@ -2,10 +2,20 @@
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Viewport ကို Mobile အားလုံးနဲ့ ကိုက်ညီအောင် အဆင့်မြှင့်ထားပါတယ် -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    
+    <!-- PWA & App Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0B1220">
+    <meta name="description" content="Tr Kyaw's Teaching Hub — Management Portal. အဆင့်မြင့် သင်ကြားရေး စီမံခန့်ခွဲမှုစနစ်။">
+
     <title>Tr Kyaw's Teaching Hub — Management Portal</title>
+
     <!-- Tailwind CSS v4 -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <!-- Premium Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +27,9 @@
             font-family: 'Plus Jakarta Sans', 'Padauk', sans-serif; 
             letter-spacing: -0.02em; 
             scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent; /* ဖုန်းမှာ နှိပ်တဲ့အခါ အစင်းကြောင်း မပေါ်အောင် */
+            background-color: #0B1220; /* နောက်ခံအရောင် စနစ်တကျ သတ်မှတ် */
+            color: #ffffff;
         }
 
         /* Webkit Scrollbar Minimal Design */
@@ -33,6 +46,9 @@
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
 
         /* SaaS Elevation Layered Cards */
@@ -48,7 +64,15 @@
             box-shadow: 0 15px 35px -10px rgba(99, 102, 241, 0.15);
         }
 
-        /* Scandi Break Cell Pattern with Soft Indigo Accent */
+        /* Loading Skeleton Animation (အသစ်ထည့်ပေးထားသည်) */
+        .skeleton {
+            background: linear-gradient(90deg, #111827 25%, #1e293b 50%, #111827 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+        /* Scandi Break Cell Pattern */
         .scandi-break { 
             background: repeating-linear-gradient(45deg, rgba(99,102,241,0.08), rgba(99,102,241,0.08) 10px, rgba(17,24,39,0.7) 10px, rgba(17,24,39,0.7) 20px) !important;
             color: #94A3B8 !important; 
@@ -65,7 +89,7 @@
             box-shadow: 0 8px 20px -5px rgba(0,0,0,0.5);
         }
 
-        /* High-Priority Pulse Status Configuration */
+        /* High-Priority Pulse Status */
         .live-active-cell {
             position: relative;
             background: #10B981 !important;
@@ -82,7 +106,7 @@
             100% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.7); }
         }
 
-        /* Dynamic Mapping Styles Engine */
+        /* Dynamic Mapping Styles */
         .loc-dt { background: rgba(56, 189, 248, 0.15) !important; color: #38bdf8 !important; border: 1px solid rgba(56, 189, 248, 0.3) !important; }
         .loc-cg { background: rgba(251, 146, 60, 0.15) !important; color: #fb923c !important; border: 1px solid rgba(251, 146, 60, 0.3) !important; }
         .loc-stp { background: rgba(139, 92, 246, 0.15) !important; color: #a78bfa !important; border: 1px solid rgba(139, 92, 246, 0.3) !important; }
@@ -91,15 +115,16 @@
         .loc-rp { background: rgba(34, 211, 238, 0.15) !important; color: #22d3ee !important; border: 1px solid rgba(34, 211, 238, 0.3) !important; }
         .loc-default { background: rgba(148, 163, 184, 0.1) !important; color: #94A3B8 !important; border: 1px solid rgba(148, 163, 184, 0.2) !important; }
 
+        /* Print Optimized Styling */
         @media print {
             body { background: white !important; color: black !important; padding: 0 !important; }
-            #topSystemLayout, #countdownBanner, #sidebarLegendSection, #assistantDock, .modal-frame, #analyticsSection, #auditLogsSection, #exceptionManagerCard { display: none !important; }
-            #timetableCardContainer { border: none !important; box-shadow: none !important; padding: 0 !important; }
+            .no-print { display: none !important; } /* ဒီ class လေးကို မလိုတဲ့ element မှာ ထည့်ပေးပါ */
             table { width: 100% !important; border-collapse: collapse !important; }
             th, td { border: 1px solid #cbd5e1 !important; color: #334155 !important; padding: 6px !important; font-size: 10px !important; }
         }
     </style>
 </head>
+
 <!-- ပထမဆုံး Head Tag အောက်တွင် ထည့်သွင်းပါ -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
