@@ -452,47 +452,80 @@
         // High-Capacity Structured Multidimensional Database Schema Seed
         const initialTimetableSeed = {
     1: { // တနင်္လာ
-        "5-6": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Physics"},
-        "6-7": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Physics"},
-        "7-8": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Physics"},
-        "8-∞": {"loc":"J.N.M", "teacher":"Tr Kyaw", "course":"Chemistry"}
+        "5-6": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Physics", "startMin": 300},
+        "6-7": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Physics", "startMin": 360},
+        "7-8": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Physics", "startMin": 420},
+        "8-∞": {"loc":"J.N.M", "teacher":"Tr Kyaw", "course":"Chemistry", "startMin": 480}
     },
     2: { // အင်္ဂါ
-        "5-6": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Physics"},
-        "6-7": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Physics"},
-        "7-8": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Bio"}
+        "5-6": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Physics", "startMin": 300},
+        "6-7": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Physics", "startMin": 360},
+        "7-8": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Bio", "startMin": 420}
     },
     3: { // ဗုဒ္ဓဟူး
-        "5-6": {"loc":"D.T", "teacher":"Tr Kyaw", "course":"Math"},
-        "6-7": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Physics"},
-        "7-8": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Physics"}
+        "5-6": {"loc":"D.T", "teacher":"Tr Kyaw", "course":"Math", "startMin": 300},
+        "6-7": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Physics", "startMin": 360},
+        "7-8": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Physics", "startMin": 420}
     },
     4: { // ကြာသပတေး
-        "4-5": {"loc":"C.G", "teacher":"Tr Kyaw", "course":"Bio"},
-        "5-6": {"loc":"D.T", "teacher":"Tr Kyaw", "course":"Physics"},
-        "6-7": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Math"},
-        "8-∞": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Chemistry"}
+        "4-5": {"loc":"C.G", "teacher":"Tr Kyaw", "course":"Bio", "startMin": 240},
+        "5-6": {"loc":"D.T", "teacher":"Tr Kyaw", "course":"Physics", "startMin": 300},
+        "6-7": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Math", "startMin": 360},
+        "8-∞": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Chemistry", "startMin": 480}
     },
     5: { // သောကြာ
-        "4-5": {"loc":"C.G", "teacher":"Tr Kyaw", "course":"Bio"},
-        "5-6": {"loc":"D.T", "teacher":"Tr Kyaw", "course":"Physics"},
-        "6-7": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Math"},
-        "8-∞": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Chemistry"}
+        "4-5": {"loc":"C.G", "teacher":"Tr Kyaw", "course":"Bio", "startMin": 240},
+        "5-6": {"loc":"D.T", "teacher":"Tr Kyaw", "course":"Physics", "startMin": 300},
+        "6-7": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Math", "startMin": 360},
+        "8-∞": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Chemistry", "startMin": 480}
     },
     6: { // စနေ
-        "4-5": {"loc":"C.G", "teacher":"Tr Kyaw", "course":"Math"},
-        "5-6": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Physics"},
-        "6-7": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Chemistry"},
-        "8-∞": {"loc":"D.T", "teacher":"Tr Kyaw", "course":"Bio"}
+        "4-5": {"loc":"C.G", "teacher":"Tr Kyaw", "course":"Math", "startMin": 240},
+        "5-6": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Physics", "startMin": 300},
+        "6-7": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Chemistry", "startMin": 360},
+        "8-∞": {"loc":"D.T", "teacher":"Tr Kyaw", "course":"Bio", "startMin": 480}
     },
     0: { // တနင်္ဂနွေ
-        "10-11": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Physics"},
-        "4-5": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Math"},
-        "5-6": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Bio"},
-        "6-7": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Bio"},
-        "8-∞": {"loc":"J.N.M", "teacher":"Tr Kyaw", "course":"Chemistry"}
+        "10-11": {"loc":"R.P", "teacher":"Tr Kyaw", "course":"Physics", "startMin": 600},
+        "4-5": {"loc":"P.H.L", "teacher":"Tr Kyaw", "course":"Math", "startMin": 240},
+        "5-6": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Bio", "startMin": 300},
+        "6-7": {"loc":"S.T.P", "teacher":"Tr Kyaw", "course":"Bio", "startMin": 360},
+        "8-∞": {"loc":"J.N.M", "teacher":"Tr Kyaw", "course":"Chemistry", "startMin": 480}
     }
 };
+// Noti ပို့မယ့် Function
+function checkClassAlerts() {
+    const now = new Date();
+    const currentTotalMinutes = (now.getHours() * 60) + now.getMinutes();
+    const day = now.getDay();
+    const todaySchedule = initialTimetableSeed[day]; // User ပြောင်းထားတဲ့အတိုင်း Data ယူမယ်
+
+    if (!todaySchedule) return;
+
+    for (const slot in todaySchedule) {
+        const startHour = parseInt(slot.split('-')[0]); 
+        if (isNaN(startHour)) continue; 
+
+        const startMin = startHour * 60; 
+
+        // ၁၅ မိနစ်အလိုဖြစ်ရင်
+        if (startMin - currentTotalMinutes === 15) {
+             if (Notification.permission === "granted") {
+                new Notification("အတန်းချိန် သတိပေးချက်", {
+                    body: `၁၅ မိနစ်အတွင်း ${initialMapSchema[todaySchedule[slot].loc].name} မှာ သင်ရပါမယ်။`
+                });
+            }
+        }
+    }
+}
+
+    // စတင်လည်ပတ်ခြင်း
+    window.onload = () => {
+        if (Notification.permission !== 'granted') {
+            Notification.requestPermission();
+        }
+        setInterval(checkClassAlerts, 60000);
+    };
         // --- ဒီနေရာမှာ သင်မေးထားတဲ့ ကုဒ်အသစ်တွေကို ထည့်ရပါမယ် ---
         
         // Language Toggle Function
