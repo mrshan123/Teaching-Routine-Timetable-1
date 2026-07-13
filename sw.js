@@ -38,3 +38,34 @@ self.addEventListener('activate', (event) => {
     })
   );
 });
+
+// အတန်းချိန် သတိပေးချက် Noti ကို လက်ခံရယူခြင်း
+self.addEventListener('push', (event) => {
+    let notificationData = {};
+    
+    // Server ကနေ data ပို့လာရင် ဖတ်မယ် (မရှိရင် default တန်ဖိုးသုံးမယ်)
+    if (event.data) {
+        notificationData = event.data.json();
+    }
+
+    const options = {
+        body: notificationData.body || "သင်တန်းချိန် ၁၅ မိနစ်အလို ရောက်ပါပြီ။",
+        icon: 'icon.png', // မင်းရဲ့ icon ပုံ
+        badge: 'icon.png',
+        data: {
+            url: '/' // Noti ကိုနှိပ်ရင် ဘယ်သွားမလဲဆိုတာ
+        }
+    };
+
+    event.waitUntil(
+        self.registration.showNotification(notificationData.title || "အတန်းချိန် သတိပေးချက်", options)
+    );
+});
+
+// Noti ကို နှိပ်လိုက်ရင် ဝဘ်ဆိုက်ကို ပြန်ဖွင့်ပေးခြင်း
+self.addEventListener('notificationclick', (event) => {
+    event.notification.close();
+    event.waitUntil(
+        clients.openWindow('/')
+    );
+});
