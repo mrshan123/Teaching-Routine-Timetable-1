@@ -448,6 +448,55 @@
         };
 
         const initialTimeSlots = ["8-9", "9-10", "10-11", "11-12", "12-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-∞"];
+        // ... မင်းရဲ့ ရှိပြီးသား code ...
+const initialTimeSlots = ["8-9", "9-10", "10-11", "11-12", "12-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-∞"];
+
+// ဒီနေရာမှာ အခုပေးလိုက်တဲ့ Noti Code တွေကို ကူးထည့်လိုက်ပါ
+function requestNotificationPermission() {
+    if ('Notification' in window && Notification.permission !== 'granted') {
+        Notification.requestPermission();
+    }
+}
+
+function checkClassAlerts() {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    const currentTimeInMin = currentHour * 60 + currentMinute;
+
+    initialTimeSlots.forEach(slot => {
+        const [start] = slot.split('-');
+        if (start === '∞') return;
+        
+        let slotHour = parseInt(start);
+        if (slotHour < 6) slotHour += 12; 
+        const slotTimeInMin = slotHour * 60; 
+
+        const alertTime = slotTimeInMin - 15;
+
+        if (currentTimeInMin === alertTime) {
+            sendNotification(`အတန်းချိန်သတိပေးချက်`, `၁၅ မိနစ်အတွင်း အတန်းချိန် စပါတော့မယ်။ အဆင်သင့်ပြင်ထားပါ။`);
+        }
+    });
+}
+
+function sendNotification(title, body) {
+    if (Notification.permission === 'granted') {
+        new Notification(title, {
+            body: body,
+            icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'
+        });
+    }
+}
+
+setInterval(checkClassAlerts, 60000);
+
+// အရေးကြီး: Window.onload ရှိပြီးသားလား စစ်ပါ
+// အကယ်၍ မရှိရင် ဒီဟာကို ထည့်ပါ၊ ရှိပြီးသားဆိုရင် ဒီထဲက requestNotificationPermission(); ကိုယူပြီး မင်းရဲ့ ရှိပြီးသား onload ထဲ ထည့်ပါ
+window.onload = () => {
+    requestNotificationPermission();
+    // မင်းရဲ့ တခြား onload function တွေ ရှိရင်လည်း ဒီမှာ ထည့်ထားပေးပါ
+};
 
         // High-Capacity Structured Multidimensional Database Schema Seed
         const initialTimetableSeed = {
