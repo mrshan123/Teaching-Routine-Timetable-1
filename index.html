@@ -509,7 +509,7 @@ function checkClassAlerts() {
         const startMin = startHour * 60; 
 
         // ၁၅ မိနစ်အလိုဖြစ်ရင်
-        if (startMin - currentTotalMinutes === 15) {
+        if (startMin - currentTotalMinutes === 0) {
              if (Notification.permission === "granted") {
                 new Notification("အတန်းချိန် သတိပေးချက်", {
                     body: `၁၅ မိနစ်အတွင်း ${initialMapSchema[todaySchedule[slot].loc].name} မှာ သင်ရပါမယ်။`
